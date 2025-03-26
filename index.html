@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Sara 💖</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffeef2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    h1 {
+      color: #d6336c;
+    }
+
+    input {
+      padding: 10px;
+      border: 2px solid #d6336c;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 4s ease-in-out forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ff69b4;
+      opacity: 0;
+    }
+
+    .heart span {
+      background: white;
+      border-radius: 50%;
+      padding: 4px 8px;
+      font-size: 12px;
+      margin-top: 4px;
+      color: #d6336c;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-400px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    #audioPlayer {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Digite o nome 💌</h1>
+  <input type="text" id="nameInput" placeholder="Seu nome">
+  <button onclick="checkName()">Enviar</button>
+
+  <audio id="audioPlayer" src="assets/dandelions.mp3" loop></audio>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "100vh";
+      heart.innerHTML = '❤️<span>26/03</span>';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }
+
+    function checkName() {
+      const input = document.getElementById("nameInput").value.trim().toLowerCase();
+      if (input.trim().toLowerCase() === "sara") {
+        playAudio();
+        for (let i = 0; i < 100; i++) {
+          setTimeout(createHeart, i * 200);
+        }
+        return;
+      }
+      alert("Esse mimo é só pra Sara 😘");
+    }
+
+    function playAudio(){
+        const audio = document.getElementById("audioPlayer");
+        audio.volume = .3;
+        if(audio.paused){
+          audio.play();
+        }
+    }
+
+  </script>
+
+</body>
+</html>
